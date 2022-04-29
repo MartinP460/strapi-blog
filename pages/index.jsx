@@ -6,10 +6,10 @@ import LatestPosts from '../components/Home/LatestsPosts';
 
 function Home({ posts }) {
   return (
-    <>
+    <div className="max-w-5xl">
       <Header />
       <LatestPosts posts={posts.data} />
-    </>
+    </div>
   );
 }
 

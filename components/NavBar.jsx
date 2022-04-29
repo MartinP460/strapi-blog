@@ -1,20 +1,25 @@
 import Link from 'next/link';
+import propTypes from 'prop-types';
 
-function NavBar() {
+function NavBar({ hideLogo }) {
   return (
-    <nav className="container mx-auto flex justify-between p-4 max-w-7xl">
+    <nav className="flex justify-between h-28">
       <Link href="/">
-        <button className="underline" type="button">Generic blog posts</button>
+        <button className={`font-light text-2xl ${hideLogo ? 'sm:invisible text-3xl' : ''}`} type="button">Great blog.</button>
       </Link>
-      <ul>
-        <li>
-          <Link href="/posts">
-            <button className="underline" type="button">All posts</button>
-          </Link>
-        </li>
-      </ul>
+      <Link href="/posts">
+        <button className="hover:underline" type="button">All posts</button>
+      </Link>
     </nav>
   );
 }
 
 export default NavBar;
+
+NavBar.propTypes = {
+  hideLogo: propTypes.bool,
+};
+
+NavBar.defaultProps = {
+  hideLogo: false,
+};
