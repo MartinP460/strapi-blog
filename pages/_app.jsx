@@ -5,18 +5,14 @@ import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="bg-[#E6E0D4]">
-      <div className="max-w-6xl mx-auto">
-        <Layout hideNavbarLogo>
-          <main className="container mx-auto">
-            <Component {...pageProps} />
-          </main>
-        </Layout>
-      </div>
+    <div className="bg-[#E6E0D4] text-neutral-700">
+      <Layout hideNavbarLogo>
+        <main className="container mx-auto max-w-6xl px-8">
+          <Component {...pageProps} />
+        </main>
+      </Layout>
     </div>
   );
 }
-
-// "next/core-web-vitals"
 
 export default MyApp;

@@ -10,10 +10,10 @@ function LatestPosts({ posts }) {
   };
 
   return (
-    <>
-      <h2 className="text-4xl font-bold mt-8">Latest posts</h2>
-      {renderPostsPreview()}
-    </>
+    <div className="text-center mt-24 md:max-w-[800px] mx-auto">
+      <p className="uppercase mb-20">Recent blogs</p>
+      <div className="md:grid md:grid-cols-2 md:gap-16">{renderPostsPreview()}</div>
+    </div>
   );
 }
 

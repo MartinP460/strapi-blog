@@ -3,12 +3,13 @@ import axios from 'axios';
 import qs from 'qs';
 import Header from '../components/Home/Header';
 import LatestPosts from '../components/Home/LatestsPosts';
+import FeaturedPost from '../components/Home/FeaturedPost';
 
 function Home({ posts }) {
   return (
-    <div className="max-w-5xl">
-      <Header />
-      <LatestPosts posts={posts.data} />
+    <div className="max-w-5xl mx-auto">
+      <Header featuredPost={<FeaturedPost post={posts.data[0]} />} />
+      <LatestPosts posts={posts.data.slice(1)} />
     </div>
   );
 }

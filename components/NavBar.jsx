@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 
 function NavBar({ hideLogo }) {
   return (
-    <nav className="flex justify-between h-28">
+    <nav className="flex justify-between h-28 container mx-auto max-w-6xl px-4">
       <Link href="/">
         <button className={`font-light text-2xl ${hideLogo ? 'sm:invisible text-3xl' : ''}`} type="button">Great blog.</button>
       </Link>
