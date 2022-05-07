@@ -2,50 +2,46 @@
 import axios from 'axios';
 import MarkdownIt from 'markdown-it/lib';
 import qs from 'qs';
-import Image from 'next/image';
+import Header from '../../components/Posts/Header';
+import ShareButtonGroup from '../../components/Posts/ShareButtonGroup';
+import PreviewGroup from '../../components/PreviewGroup';
 
-function Post({ post }) {
+function Post({ post, previews }) {
   const md = new MarkdownIt();
   const htmlContent = md.render(post.attributes.content);
 
+  const nonCurrentPreviews = previews
+    .filter((preview) => !(preview.attributes.title === post.attributes.title));
+
   return (
-    <article>
-      <header>
-        <h1 className="text-5xl">{post.attributes.title}</h1>
-        <h2 className="text-xl mt-8">{post.attributes.description}</h2>
-        <Image
-          src={`http://localhost:1337${post.attributes.headerImage.data.attributes.url}`}
-          alt={post.attributes.headerImage.data.attributes.alternativeText}
-          width={800}
-          height={500}
-        />
-        <div>
-          <Image
-            src={`http://localhost:1337${post.attributes.author.data.attributes.image.data.attributes.url}`}
-            alt={
-              post.attributes.author.data.attributes.image.data.attributes
-                .alternativeText
-            }
-            width={40}
-            height={40}
-          />
-          <p>{post.attributes.author.data.attributes.name}</p>
-          <p>{post.attributes.author.data.attributes.position}</p>
-        </div>
-      </header>
-      <article
+    <>
+      <article className="mt-4">
+        <Header post={post} />
+        <article
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: htmlContent }}
-        className="prose prose-md mx-auto mt-8"
-      />
-    </article>
+          dangerouslySetInnerHTML={{ __html: htmlContent }}
+          className="prose prose-md mx-auto mt-10"
+        />
+      </article>
+      <div className="max-w-[800px] mx-auto">
+        <ShareButtonGroup />
+        <div className="w-2/3 h-0.5 bg-neutral-400 mx-auto mt-8 md:w-full" />
+        <section className="mt-16">
+          <p className="text-xl text-center md:mb-16">You may also like...</p>
+          <PreviewGroup
+            posts={nonCurrentPreviews}
+            previews={2}
+          />
+        </section>
+      </div>
+    </>
   );
 }
 
 export default Post;
 
 export async function getStaticProps({ params }) {
-  const query = qs.stringify(
+  const postQuery = qs.stringify(
     {
       populate: {
         headerImage: '*',
@@ -60,12 +56,26 @@ export async function getStaticProps({ params }) {
   );
 
   const postRes = await axios.get(
-    `http://localhost:1337/api/posts/${params.id}?${query}`,
+    `http://localhost:1337/api/posts/${params.id}?${postQuery}`,
+  );
+
+  const previewQuery = qs.stringify({
+    fields: ['title', 'description', 'publishedAt'],
+    populate: {
+      headerImage: '*',
+    },
+  }, {
+    encodeValuesOnly: true,
+  });
+
+  const previewRes = await axios.get(
+    `http://localhost:1337/api/posts?${previewQuery}`,
   );
 
   return {
     props: {
       post: postRes.data.data,
+      previews: previewRes.data.data,
     },
   };
 }
