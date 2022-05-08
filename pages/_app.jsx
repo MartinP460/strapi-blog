@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
-import Layout from '../components/Layout';
+import Layout from '../components/UI/Layout';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {

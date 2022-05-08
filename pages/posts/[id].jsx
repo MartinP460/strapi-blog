@@ -4,7 +4,7 @@ import MarkdownIt from 'markdown-it/lib';
 import qs from 'qs';
 import Header from '../../components/Posts/Header';
 import ShareButtonGroup from '../../components/Posts/ShareButtonGroup';
-import PreviewGroup from '../../components/PreviewGroup';
+import PreviewGroup from '../../components/UI/PreviewGroup';
 
 function Post({ post, previews }) {
   const md = new MarkdownIt();

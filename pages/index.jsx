@@ -2,7 +2,7 @@
 import axios from 'axios';
 import qs from 'qs';
 import Header from '../components/Home/Header';
-import PreviewGroup from '../components/PreviewGroup';
+import PreviewGroup from '../components/UI/PreviewGroup';
 import FeaturedPost from '../components/Home/FeaturedPost';
 
 function Home({ posts }) {
