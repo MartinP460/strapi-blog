@@ -1,19 +1,22 @@
 /* eslint-disable react/prop-types */
 import axios from 'axios';
 import qs from 'qs';
+import Layout from '../components/UI/Layout';
 import Header from '../components/Home/Header';
 import PreviewGroup from '../components/UI/PreviewGroup';
 import FeaturedPost from '../components/Home/FeaturedPost';
 
 function Home({ posts }) {
   return (
-    <div className="max-w-5xl mx-auto">
-      <Header featuredPost={<FeaturedPost post={posts.data[0]} />} />
-      <div className="text-center mt-24 md:max-w-[800px] mx-auto">
-        <p className="uppercase mb-20">Recent blogs</p>
-        <PreviewGroup posts={posts.data.slice(1)} previews={5} />
+    <Layout title="Home" description="A Great Blog with some great blogs." hideNavbarLogo>
+      <div className="max-w-5xl mx-auto">
+        <Header featuredPost={<FeaturedPost post={posts.data[0]} />} />
+        <div className="text-center mt-24 md:max-w-[800px] mx-auto">
+          <p className="uppercase mb-20">Recent blogs</p>
+          <PreviewGroup posts={posts.data.slice(1)} previews={5} />
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 

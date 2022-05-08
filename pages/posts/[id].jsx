@@ -2,6 +2,7 @@
 import axios from 'axios';
 import MarkdownIt from 'markdown-it/lib';
 import qs from 'qs';
+import Layout from '../../components/UI/Layout';
 import Header from '../../components/Posts/Header';
 import ShareButtonGroup from '../../components/Posts/ShareButtonGroup';
 import PreviewGroup from '../../components/UI/PreviewGroup';
@@ -14,11 +15,11 @@ function Post({ post, previews }) {
     .filter((preview) => !(preview.attributes.title === post.attributes.title));
 
   return (
-    <>
+    <Layout title={post.attributes.title} description={post.attributes.description}>
       <article className="mt-4">
         <Header post={post} />
         <article
-        // eslint-disable-next-line react/no-danger
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: htmlContent }}
           className="prose prose-md mx-auto mt-10"
         />
@@ -34,7 +35,7 @@ function Post({ post, previews }) {
           />
         </section>
       </div>
-    </>
+    </Layout>
   );
 }
 

@@ -2,6 +2,7 @@
 import axios from 'axios';
 import qs from 'qs';
 import { useState } from 'react';
+import Layout from '../components/UI/Layout';
 import Input from '../components/UI/Input';
 import Preview from '../components/UI/Preview';
 
@@ -20,17 +21,19 @@ function Posts({ posts }) {
   };
 
   return (
-    <div className="min-h-screen max-w-5xl mx-auto">
-      <div className="text-center">
-        <h2 className="text-3xl text-black font-bold mt-8">Latest posts</h2>
-        <Input onChange={(e) => setQuery(e.target.value)} className="mt-6">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </Input>
+    <Layout title="All blogs">
+      <div className="min-h-screen max-w-5xl mx-auto">
+        <div className="text-center">
+          <h2 className="text-3xl text-black font-bold mt-8">Search all blogs</h2>
+          <Input onChange={(e) => setQuery(e.target.value)} className="mt-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </Input>
+        </div>
+        <div className="md:grid md:grid-cols-3 md:gap-8 md:mt-12">{renderPostsPreview()}</div>
       </div>
-      <div className="md:grid md:grid-cols-3 md:gap-8 md:mt-12">{renderPostsPreview()}</div>
-    </div>
+    </Layout>
   );
 }
 
