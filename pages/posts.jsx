@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
-import axios from 'axios';
-import qs from 'qs';
 import { useState } from 'react';
 import Layout from '../components/UI/Layout';
 import Input from '../components/UI/Input';
 import Preview from '../components/UI/Preview';
+import blogService from '../utils/blogService';
 
 function Posts({ posts }) {
   const [query, setQuery] = useState('');
@@ -40,20 +39,11 @@ function Posts({ posts }) {
 export default Posts;
 
 export async function getStaticProps() {
-  const query = qs.stringify(
-    {
-      populate: '*',
-    },
-    {
-      encodeValuesOnly: true,
-    },
-  );
-
-  const postsRes = await axios.get(`http://localhost:1337/api/posts?${query}`);
+  const blogs = await blogService.getPreviews();
 
   return {
     props: {
-      posts: postsRes.data.data,
+      posts: blogs,
     },
   };
 }

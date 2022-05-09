@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
-import axios from 'axios';
 import MarkdownIt from 'markdown-it/lib';
-import qs from 'qs';
 import Layout from '../../components/UI/Layout';
 import Header from '../../components/Posts/Header';
 import ShareButtonGroup from '../../components/Posts/ShareButtonGroup';
 import PreviewGroup from '../../components/UI/PreviewGroup';
+import blogService from '../../utils/blogService';
 
 function Post({ post, previews }) {
   const md = new MarkdownIt();
@@ -42,49 +41,22 @@ function Post({ post, previews }) {
 export default Post;
 
 export async function getStaticProps({ params }) {
-  const postQuery = qs.stringify(
-    {
-      populate: {
-        headerImage: '*',
-        author: {
-          populate: '*',
-        },
-      },
-    },
-    {
-      encodeValuesOnly: true,
-    },
-  );
+  const post = await blogService.getBlog(params.id);
 
-  const postRes = await axios.get(
-    `http://localhost:1337/api/posts/${params.id}?${postQuery}`,
-  );
-
-  const previewQuery = qs.stringify({
-    fields: ['title', 'description', 'publishedAt'],
-    populate: {
-      headerImage: '*',
-    },
-  }, {
-    encodeValuesOnly: true,
-  });
-
-  const previewRes = await axios.get(
-    `http://localhost:1337/api/posts?${previewQuery}`,
-  );
+  const previews = await blogService.getPreviews();
 
   return {
     props: {
-      post: postRes.data.data,
-      previews: previewRes.data.data,
+      post,
+      previews,
     },
   };
 }
 
 export async function getStaticPaths() {
-  const postsRes = await axios.get('http://localhost:1337/api/posts');
+  const posts = await blogService.getIds();
 
-  const paths = postsRes.data.data.map((post) => ({ params: { id: post.id.toString() } }));
+  const paths = posts.map((post) => ({ params: { id: post.id.toString() } }));
 
   return {
     paths,
