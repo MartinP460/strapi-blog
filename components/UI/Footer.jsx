@@ -9,7 +9,7 @@ function Footer() {
         <p className="text-lg mb-4">Made with Strapi and Next.js.</p>
         <Link href="https://github.com/MartinP460/strapi-blog">
           <a>
-            <Image src="/images/github-mark.png" width={32} height={32} />
+            <Image src="/images/github-mark.png" width={32} height={32} alt="Github Repository" />
           </a>
         </Link>
       </div>

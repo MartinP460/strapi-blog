@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 function Header({ featuredPost }) {
   return (
     <header>
-      <h1 className="hidden sm:inline text-8xl font-light text-black">Great Blog.</h1>
+      <h1 className="hidden sm:inline text-8xl font-light text-black">Another Blog.</h1>
       {featuredPost}
     </header>
   );
