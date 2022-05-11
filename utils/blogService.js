@@ -1,6 +1,8 @@
 import axios from 'axios';
 import qs from 'qs';
 
+const baseUrl = process.env.STRAPI_URL;
+
 const defineQuery = (fields, populate) => {
   const query = qs.stringify(
     {
@@ -21,7 +23,7 @@ const getPreviews = async () => {
     { headerImage: '*' },
   );
 
-  const blogs = await axios.get(`http://localhost:1337/api/posts?${query}`);
+  const blogs = await axios.get(`${baseUrl}/api/posts?${query}`);
 
   return blogs.data.data;
 };
@@ -32,7 +34,7 @@ const getFeaturedAndPreviews = async () => {
     { headerImage: '*' },
   );
 
-  const blogs = await axios.get(`http://localhost:1337/api/posts?${query}`);
+  const blogs = await axios.get(`${baseUrl}/api/posts?${query}`);
 
   return blogs.data.data;
 };
@@ -40,9 +42,7 @@ const getFeaturedAndPreviews = async () => {
 const getIds = async () => {
   const query = defineQuery(['id']);
 
-  const blog = await axios.get(
-    `http://localhost:1337/api/posts?${query}`,
-  );
+  const blog = await axios.get(`${baseUrl}/api/posts?${query}`);
 
   return blog.data.data;
 };
@@ -53,9 +53,7 @@ const getBlog = async (id) => {
     { headerImage: '*', author: { populate: '*' } },
   );
 
-  const blog = await axios.get(
-    `http://localhost:1337/api/posts/${id}?${query}`,
-  );
+  const blog = await axios.get(`${baseUrl}/api/posts/${id}?${query}`);
 
   return blog.data.data;
 };

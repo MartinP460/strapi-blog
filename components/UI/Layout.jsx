@@ -10,7 +10,7 @@ function Layout({
   return (
     <>
       <Head>
-        <title>{`${title} | Great blog`}</title>
+        <title>{`${title} | Another blog`}</title>
         {description && <meta name="description" content={description} />}
       </Head>
       <NavBar hideLogo={hideNavbarLogo} />

@@ -14,12 +14,14 @@ function FeaturedPost({ post }) {
       <div className="text-center md:grid md:grid-cols-2 md:text-left">
         <div className="md:ml-12">
           <p className="uppercase">Featured blog</p>
-          <h2 className="text-3xl font-bold mt-6 mb-4 text-black md:text-5xl md:leading-normal">{title}</h2>
+          <Link href={`/posts/${post.id}`}>
+            <a className="text-3xl font-bold mt-6 mb-4 text-black block hover:underline underline-offset-8 md:text-5xl md:leading-normal">{title}</a>
+          </Link>
           <p className="hidden md:inline prose">{description}</p>
         </div>
         <div className="order-first">
           <Image
-            src={`http://localhost:1337${headerImage.data.attributes.url}`}
+            src={`https://strapi-blog460.herokuapp.com${headerImage.data.attributes.url}`}
             alt={headerImage.data.attributes.alternativeText}
             width={592}
             height={438}

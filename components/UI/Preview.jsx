@@ -14,7 +14,7 @@ function Preview({ post }) {
       <Link href={`/posts/${post.id}`}>
         <a>
           <Image
-            src={`http://localhost:1337${headerImage.data.attributes.url}`}
+            src={`https://strapi-blog460.herokuapp.com${headerImage.data.attributes.url}`}
             alt={headerImage.data.attributes.alternativeText}
             width={640}
             height={473}
@@ -25,7 +25,7 @@ function Preview({ post }) {
       </Link>
       <div>
         <p className="mt-4">{format(new Date(publishedAt), "LLLL d',' yyyy")}</p>
-        <Link href={`/posts/${post.id}`}>
+        <Link href={`/posts/${post.id}`} passHref>
           <h3 className="text-xl font-bold mt-4 hover:underline cursor-pointer">{title}</h3>
         </Link>
         <p className="prose mt-2">{description}</p>
