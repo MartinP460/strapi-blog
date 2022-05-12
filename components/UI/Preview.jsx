@@ -14,7 +14,7 @@ function Preview({ post }) {
       <Link href={`/posts/${post.id}`}>
         <a>
           <Image
-            src={`https://strapi-blog460.herokuapp.com${headerImage.data.attributes.url}`}
+            src={headerImage.data.attributes.url}
             alt={headerImage.data.attributes.alternativeText}
             width={640}
             height={473}

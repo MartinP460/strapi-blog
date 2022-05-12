@@ -21,7 +21,7 @@ function FeaturedPost({ post }) {
         </div>
         <div className="order-first">
           <Image
-            src={`https://strapi-blog460.herokuapp.com${headerImage.data.attributes.url}`}
+            src={headerImage.data.attributes.url}
             alt={headerImage.data.attributes.alternativeText}
             width={592}
             height={438}

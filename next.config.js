@@ -2,7 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['strapi-blog460.herokuapp.com'],
+    deviceSizes: [320, 420, 768, 1024, 1200],
+    loader: 'default',
+    domains: ['res.cloudinary.com'],
   },
 };
 

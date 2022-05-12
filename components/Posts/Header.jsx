@@ -20,7 +20,7 @@ function Header({ post }) {
       </div>
       <div className="mt-6">
         <Image
-          src={`https://strapi-blog460.herokuapp.com${headerImage.data.attributes.url}`}
+          src={headerImage.data.attributes.url}
           alt={headerImage.data.attributes.alternativeText}
           width={1088}
           height={707}
@@ -31,7 +31,7 @@ function Header({ post }) {
       </div>
       <div className="flex mt-4 items-center max-w-[800px] mx-auto">
         <Image
-          src={`https://strapi-blog460.herokuapp.com${author.data.attributes.image.data.attributes.url}`}
+          src={author.data.attributes.image.data.attributes.url}
           alt={author.data.attributes.image.data.attributes.alternativeText}
           width={50}
           height={50}
