@@ -10,7 +10,6 @@
 
 # misc
 .DS_Store
-/public/fonts
 
 # local env files
 .env*.local
