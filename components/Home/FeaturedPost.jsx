@@ -3,11 +3,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import format from 'date-fns/format';
+import useWindowDimension from '../../hooks/useWindowDimension';
 
 function FeaturedPost({ post }) {
   const {
     title, description, headerImage, publishedAt, introduction,
   } = post.attributes;
+
+  const { width } = useWindowDimension();
 
   return (
     <div className="mt-8 md:mt-20">
@@ -19,12 +22,13 @@ function FeaturedPost({ post }) {
           </Link>
           <p className="hidden md:inline prose">{description}</p>
         </div>
-        <div className="order-first">
+        <div className="order-first relative block">
           <Image
             src={headerImage.data.attributes.url}
             alt={headerImage.data.attributes.alternativeText}
             width={592}
             height={438}
+            layout={width >= 768 ? 'fill' : 'intrinsic'}
             priority
             objectFit="cover"
             className="rounded-lg"
